@@ -1,0 +1,51 @@
+/* This file is the descriptor for the Custom python probe feature_difference */
+{
+    "meta" : {
+        // label: name of the probe as displayed, should be short
+        "label": "Feature metrics against reference",
+
+        // description: longer string to help end users understand what this probe does
+        "description": "",
+
+        // icon: must be one of the FontAwesome 3.2.1 icons, complete list here at https://fontawesome.com/v3.2.1/icons/
+        "icon": "icon-check"
+    },
+
+    /* set to true if the probe applies to datasets */
+    "handlesDataset": true,
+    /* set to true if the probe applies to managed folders */
+    "handlesManagedFolder": false,
+
+
+    /* params:
+    DSS will generate a formular from this list of requested parameters.
+    Your component code can then access the value provided by users using the "name" field of each parameter.
+
+    Available parameter types include:
+    STRING, INT, DOUBLE, BOOLEAN, DATE, SELECT, TEXTAREA, PRESET and others.
+
+    For the full list and for more details, see the documentation: https://doc.dataiku.com/dss/latest/plugins/reference/params.html
+    */
+    "params": [
+        {
+            "name": "ds_ref",
+            "label": "Reference dataset",
+            "type": "DATASET",
+            "description": "Dataset on which feature checks are computed",
+            "mandatory": true
+        },
+        {
+            "name": "select_columns",
+            "label" : "Select specific columns",
+            "type": "BOOLEAN"
+        },
+        {
+            "name": "columns",
+            "label": "Columns to check",
+            "type": "DATASET_COLUMNS",
+            "description": "Columns of the dataset to be checked",
+            "mandatory": false,
+            "visibilityCondition" : "model.select_columns"
+        }
+    ]
+}
