@@ -1,33 +1,33 @@
-/* This file is the descriptor for the Custom python check check-against-reference */
 {
     "meta" : {
-        // label: name of the check set as displayed, should be short
         "label": "Check dataset against reference",
-
-        // description: longer string to help end users understand what this checks
         "description": "Compares feature descriptors between a reference and the current dataset",
-
-        // icon: must be one of the FontAwesome 3.2.1 icons, complete list here at https://fontawesome.com/v3.2.1/icons/
         "icon": "icon-check"
     },
-
-
-    /* params:
-    DSS will generate a formular from this list of requested parameters.
-    Your component code can then access the value provided by users using the "name" field of each parameter.
-
-    Available parameter types include:
-    STRING, INT, DOUBLE, BOOLEAN, DATE, SELECT, TEXTAREA, PRESET and others.
-
-    For the full list and for more details, see the documentation: https://doc.dataiku.com/dss/latest/plugins/reference/params.html
-    */
     "params": [
+        {
+            "name": "input_mode",
+            "label": "Input type",
+            "type": "SELECT",
+            "selectChoices": [
+                { "value": "dataset", "label": "Dataset"},
+                { "value": "model", "label": "Saved model"}
+            ],
+            "defaultValue": "model"
+        },
         {
             "name": "ds_ref",
             "label": "Reference dataset",
             "type": "DATASET",
             "description": "Dataset on which feature checks are computed",
-            "mandatory": true
+            "visibilityCondition": "model.input_mode == 'dataset'"
+        },
+        {
+            "name": "model_ref",
+            "label": "Reference model",
+            "type": "SAVED_MODEL",
+            "description": "Model on which feature checks are computed",
+            "visibilityCondition": "model.input_mode == 'model'"
         },
         {
             "name": "select_columns",
