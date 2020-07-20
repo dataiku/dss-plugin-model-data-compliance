@@ -1,4 +1,8 @@
 import numpy as np
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format='Model Data Quality plugin | %(levelname)s - %(message)s')
 
 def get_bounds(a, mode='absolute_range'):
     """
@@ -35,6 +39,7 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
         if not col_name in columns:
             continue
         rmin, rmax = get_bounds(df_ref[col_name], mode=range_mode)
+        logger.info('Checking column {}. Lower bound: {}. Upper bound: {}'.format(col_name, rmin, rmax))
         # We count the ratio of samples in test outside of this range
         n_invalid = np.sum(np.logical_or(df_test[col_name].values < rmin, df_test[col_name].values > rmax))
         result[col_name] = n_invalid / n_test
@@ -43,6 +48,7 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
         if not col_name in columns:
             continue
         ref_categories = df_ref[col_name].unique()
+        logger.info('Checking column {}. Reference categories:'.format(col_name, ref_categories))
         result[col_name] = 1 - (np.isin(df_test[col_name].values, ref_categories).sum()) / n_test
     
     return result
