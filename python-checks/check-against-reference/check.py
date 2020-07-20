@@ -47,11 +47,12 @@ def process(last_values, ds_test, partition_id):
             columns = chosen_columns
             features_not_in_model = list(set(columns) - set(selected_features))
             if len(features_not_in_model) > 0:
-                raise ValueError('The following chosen columns are not used in the model: {}'.format(features_not_in_model))
+                raise ValueError('The following chosen columns are not used in the model: {}. Please remove them from the list of columns to check'.format(features_not_in_model))
         else:
             columns = selected_features
 
-    diff = check_differences_between_datasets(df_ref, df_test, columns=columns)
+    range_mode = config.get('range_mode')
+    diff = check_differences_between_datasets(df_ref, df_test, columns=columns, range_mode=range_mode)
 
     message = ' '.join(['[{}, {:.2f}, {}]'.format(col_name, ratio, 'PASSED' if ratio <= tolerance else 'FAILED') for col_name, ratio in diff.items()])
     
