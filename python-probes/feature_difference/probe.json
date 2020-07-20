@@ -49,7 +49,7 @@
         },
         {
             "name": "range_mode",
-            "label": "Lower/upper bounds for numerical columns",
+            "label": "Lower/upper bounds mode",
             "type": "SELECT",
             "selectChoices": [
                 { "value": "absolute_range", "label": "Absolute range"},
@@ -59,13 +59,13 @@
         },
         {
             "name": "absolute_range_desc",
-            "description": "Check if values are in the range between the absolute min and max of the original dataset",
+            "description": "For numerical columns, check if values are in the range between the absolute min and max of the original dataset",
             "type": "SEPARATOR",
             "visibilityCondition": "model.range_mode == 'absolute_range'"
         },
         {
             "name": "interquantile_range_desc",
-            "description": "Given that IQR is the difference between 75th and 25th percentiles, check if values are in the range of 75th and 25th percentiles ± 1.5 IQR.",
+            "description": "For numerical columns, given that IQR is the difference between 75th and 25th percentiles, check if values are in the range of 75th and 25th percentiles ± 1.5 IQR.",
             "type": "SEPARATOR",
             "visibilityCondition": "model.range_mode == 'interquantile_range'"
         }
