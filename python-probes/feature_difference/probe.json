@@ -32,17 +32,20 @@
             "visibilityCondition": "model.input_mode == 'model'"
         },
         {
-            "name": "select_columns",
-            "label" : "Select specific columns",
-            "type": "BOOLEAN"
-        },
-        {
-            "name": "columns",
+            "name": "columns_dataset",
             "label": "Columns to check",
             "type": "DATASET_COLUMNS",
-            "description": "Columns of the dataset to be checked",
+            "description": "If empty, all columns will be checked",
             "mandatory": false,
-            "visibilityCondition" : "model.select_columns"
+            "visibilityCondition" : "model.input_mode == 'dataset'"
+        },
+        {
+            "name": "columns_model",
+            "label": "Columns to check",
+            "type": "DATASET_COLUMNS",
+            "description": "If empty, all columns used in the model will be checked",
+            "mandatory": false,
+            "visibilityCondition" : "model.input_mode == 'model'"
         }
     ]
 }
