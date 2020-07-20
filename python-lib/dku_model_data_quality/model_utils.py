@@ -29,7 +29,7 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
         columns = set(columns)
     
     result = dict()
-    n_test = float(df_ref.shape[0])
+    n_test = float(df_test.shape[0])
     
     for col_name in df_test.select_dtypes(include=['number']):
         if not col_name in columns:
@@ -43,7 +43,6 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
         if not col_name in columns:
             continue
         ref_categories = df_ref[col_name].unique()
-        print(col_name, np.isin(df_test[col_name].values, ref_categories))
         result[col_name] = 1 - (np.isin(df_test[col_name].values, ref_categories).sum()) / n_test
     
     return result
