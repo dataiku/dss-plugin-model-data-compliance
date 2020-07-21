@@ -53,7 +53,7 @@
             "type": "SELECT",
             "selectChoices": [
                 { "value": "absolute_range", "label": "Absolute range"},
-                { "value": "interquantile_range", "label": "Interguantile range (IQR)"}
+                { "value": "interquantile_range", "label": "Interquantile range (IQR)"}
             ],
             "defaultValue": "absolute_range"
         },

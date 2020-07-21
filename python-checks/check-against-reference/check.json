@@ -64,7 +64,7 @@
             "type": "SELECT",
             "selectChoices": [
                 { "value": "absolute_range", "label": "Absolute range"},
-                { "value": "interquantile_range", "label": "Interguantile range"}
+                { "value": "interquantile_range", "label": "Interquantile range"}
             ],
             "defaultValue": "absolute_range"
         },
