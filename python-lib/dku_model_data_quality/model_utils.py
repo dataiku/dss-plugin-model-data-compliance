@@ -7,7 +7,6 @@ logging.basicConfig(level=logging.INFO, format='Model Data Quality plugin | %(le
 
 def get_bounds(a, mode='absolute_range'):
     """
-
     :param a: array_like
     :param mode: absolute or quantile
     :return: lower bound, upper bound
@@ -27,6 +26,17 @@ def get_bounds(a, mode='absolute_range'):
 
 
 def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode='interquantile_range'):
+    """
+
+    :param df_ref:
+    :param df_test:
+    :param columns:
+    :param range_mode:
+        absolute_range returns the absolute min/max as bound
+        interquantile_range use the quantiles: https://en.wikipedia.org/wiki/Interquartile_range
+    :return: min/max bound
+    """
+
 
     if not columns:
         columns = set(df_ref.columns).intersection(set(df_test.columns))
