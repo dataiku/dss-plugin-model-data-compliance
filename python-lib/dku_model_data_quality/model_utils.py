@@ -50,7 +50,7 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
     concat_df = pd.concat([df_ref, df_test])
 
     for col_name in concat_df.select_dtypes(include=['number']):
-        if not col_name in columns:
+        if col_name not in columns:
             continue
         lower_bound, upper_bound = get_bounds(df_ref[col_name], mode=range_mode)
         logger.info('Checking column {}. Lower bound: {}. Upper bound: {}'.format(col_name, lower_bound, upper_bound))
