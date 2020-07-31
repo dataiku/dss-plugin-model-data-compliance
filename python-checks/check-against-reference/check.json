@@ -54,7 +54,7 @@
         {
             "name": "tolerance",
             "label" : "Tolerance",
-            "description": "Ratio of out)lier data allowed compared to reference",
+            "description": "Ratio of outlier data allowed compared to reference",
             "type": "DOUBLE",
             "defaultValue": 0.01
         },
