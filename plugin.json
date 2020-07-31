@@ -5,8 +5,8 @@
         "label": "Model Data Quality",
         "description": "Automatically check if new incoming data conforms the original training data",
         "author": "Dataiku (Alexandre Abraham & Du Phan)",
-        "icon": "icon-puzzle-piece",
-        "tags": ["Machine Learning"],
+        "icon": "icon-shield",
+        "tags": ["Machine Learning", "Data Quality"],
         "url": "https://www.dataiku.com/product/plugins/model-data-quality/",
         "licenseInfo": "Apache Software License"
     }
