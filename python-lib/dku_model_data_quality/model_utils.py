@@ -59,7 +59,7 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
         result[col_name] = n_invalid / n_test
 
     for col_name in concat_df.select_dtypes(include=['object', 'category']):
-        if not col_name in columns:
+        if col_name not in columns:
             continue
         ref_categories = df_ref[col_name].unique()
         logger.info('Checking column {}. Reference categories: {}'.format(col_name, ref_categories))
