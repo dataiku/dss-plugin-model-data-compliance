@@ -17,7 +17,7 @@ class SurrogateModel(object):
         self.feature_names = None
         self.target = None
         self.prediction_type = prediction_type
-        #TODO should we define some params of RF to avoid long computation ?
+        # TODO should we define some params of RF to avoid long computation ?
         if prediction_type == DkuModelAccessorConstants.CLASSIFICATION_TYPE:
             self.clf = RandomForestClassifier(random_state=1407)
         else:
