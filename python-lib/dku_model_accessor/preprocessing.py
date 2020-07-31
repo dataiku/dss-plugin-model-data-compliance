@@ -13,7 +13,7 @@ EPOCH = datetime(1900, 1, 1)
 
 class Preprocessor(object):
 
-    def __init__ (self, df=None, target=None):
+    def __init__(self, df=None, target=None):
         self.df = df
         self.target = target
         self._categorical_features = []
