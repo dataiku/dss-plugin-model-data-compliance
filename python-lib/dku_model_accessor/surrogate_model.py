@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import logging
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
-from dku_model_accessor.preprocessing import Preprocessor
+
 from dku_model_accessor.constants import DkuModelAccessorConstants
+from dku_model_accessor.preprocessing import Preprocessor
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 
 logger = logging.getLogger(__name__)
+
 
 class SurrogateModel(object):
     """
@@ -24,7 +26,8 @@ class SurrogateModel(object):
             self.clf = RandomForestRegressor(random_state=1407)
 
     def check(self, prediction_type):
-        if prediction_type not in [DkuModelAccessorConstants.CLASSIFICATION_TYPE, DkuModelAccessorConstants.REGRRSSION_TYPE]:
+        if prediction_type not in [DkuModelAccessorConstants.CLASSIFICATION_TYPE,
+                                   DkuModelAccessorConstants.REGRRSSION_TYPE]:
             raise ValueError('Prediction type must either be CLASSIFICATION or REGRESSION.')
 
     def get_features(self):

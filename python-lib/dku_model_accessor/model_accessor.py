@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import logging
+
 import pandas as pd
+from dku_model_accessor.constants import DkuModelAccessorConstants
+from dku_model_accessor.surrogate_model import SurrogateModel
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, ExtraTreesClassifier
 from sklearn.tree import DecisionTreeClassifier
-from dku_model_accessor.surrogate_model import SurrogateModel
-from dku_model_accessor.constants import DkuModelAccessorConstants
 
 logger = logging.getLogger(__name__)
 
@@ -37,7 +38,8 @@ class ModelAccessor(object):
         try:
             return self.model_handler.get_test_df()[0][:limit]
         except Exception as e:
-            logger.warning('Can not retrieve original test set: {}. The plugin will take the whole original dataset.'.format(e))
+            logger.warning(
+                'Can not retrieve original test set: {}. The plugin will take the whole original dataset.'.format(e))
             return self.model_handler.get_full_df()[0][:limit]
 
     def get_per_feature(self):
@@ -46,7 +48,8 @@ class ModelAccessor(object):
     def get_predictor(self):
         return self.model_handler.get_predictor()
 
-    def get_feature_importance(self, cumulative_percentage_threshold=DkuModelAccessorConstants.FEAT_IMP_CUMULATIVE_PERCENTAGE_THRESHOLD):
+    def get_feature_importance(self,
+                               cumulative_percentage_threshold=DkuModelAccessorConstants.FEAT_IMP_CUMULATIVE_PERCENTAGE_THRESHOLD):
         """
         :param cumulative_percentage_threshold: only return the top n features whose sum of importance reaches this threshold
         :return:
@@ -79,7 +82,8 @@ class ModelAccessor(object):
                                                            ascending=False).reset_index(drop=True)
         dfx[DkuModelAccessorConstants.CUMULATIVE_IMPORTANCE] = dfx[DkuModelAccessorConstants.IMPORTANCE].cumsum()
         dfx_top = dfx.loc[dfx[DkuModelAccessorConstants.CUMULATIVE_IMPORTANCE] <= cumulative_percentage_threshold]
-        return dfx_top.rename_axis(DkuModelAccessorConstants.RANK).reset_index().set_index(DkuModelAccessorConstants.FEATURE)
+        return dfx_top.rename_axis(DkuModelAccessorConstants.RANK).reset_index().set_index(
+            DkuModelAccessorConstants.FEATURE)
 
     def get_selected_features(self):
         selected_features = []

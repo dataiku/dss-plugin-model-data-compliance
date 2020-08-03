@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+import json
 import os
 import sys
-import json
+
 from dataiku.doctor.posttraining.model_information_handler import PredictionModelInformationHandler
 
 
@@ -13,7 +14,7 @@ def get_model_handler(model, version_id=None):
 def _get_model_info_handler(saved_model_version_id):
     infos = saved_model_version_id.split("-")
     if len(infos) != 4 or infos[0] != "S":
-        raise ValueError("Invalid saved model id") 
+        raise ValueError("Invalid saved model id")
     pkey = infos[1]
     model_id = infos[2]
     version_id = infos[3]

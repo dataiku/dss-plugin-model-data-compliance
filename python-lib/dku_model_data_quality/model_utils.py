@@ -1,9 +1,11 @@
+import logging
+
 import numpy as np
 import pandas as pd
-import logging
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format='Model Data Quality plugin | %(levelname)s - %(message)s')
+
 
 def get_bounds(a, mode='absolute_range'):
     """
@@ -22,7 +24,8 @@ def get_bounds(a, mode='absolute_range'):
         lower_bound = lower_quartile - 1.5 * iqr
         return lower_bound, upper_bound
     else:
-        raise ValueError('Unknown mode "{}". Please choose either "absolute_range" or "interquantile_range".'.format(mode))
+        raise ValueError(
+            'Unknown mode "{}". Please choose either "absolute_range" or "interquantile_range".'.format(mode))
 
 
 def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode='interquantile_range'):
@@ -35,7 +38,6 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
         interquantile_range use the quantiles: https://en.wikipedia.org/wiki/Interquartile_range
     :return: min/max bound
     """
-
 
     if not columns:
         columns = set(df_ref.columns).intersection(set(df_test.columns))
@@ -54,7 +56,8 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
         lower_bound, upper_bound = get_bounds(df_ref[col_name], mode=range_mode)
         logger.info('Checking column {}. Lower bound: {}. Upper bound: {}'.format(col_name, lower_bound, upper_bound))
         # We count the ratio of samples in test outside of this range
-        n_invalid = np.sum(np.logical_or(df_test[col_name].values < lower_bound, df_test[col_name].values > upper_bound))
+        n_invalid = np.sum(
+            np.logical_or(df_test[col_name].values < lower_bound, df_test[col_name].values > upper_bound))
         result[col_name] = n_invalid / n_test
 
     for col_name in concat_df.select_dtypes(include=['object', 'category']):
@@ -63,5 +66,5 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
         ref_categories = df_ref[col_name].unique()
         logger.info('Checking column {}. Reference categories: {}'.format(col_name, ref_categories))
         result[col_name] = 1 - (np.isin(df_test[col_name].values, ref_categories).sum()) / n_test
-    
+
     return result
