@@ -27,6 +27,5 @@ def get_params(config):
             columns = selected_features
 
     range_mode = config.get('range_mode')
-    raise ValueError('----------- {}'.format(columns))
 
     return df_ref, columns, range_mode
