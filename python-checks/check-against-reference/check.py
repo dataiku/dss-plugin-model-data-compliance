@@ -2,6 +2,7 @@ import numpy as np
 from dku_tools import get_params
 from dku_model_data_quality.model_utils import check_differences_between_datasets
 
+
 def process(last_values, ds_test, partition_id):
 
     df_test = ds_test.get_dataframe()

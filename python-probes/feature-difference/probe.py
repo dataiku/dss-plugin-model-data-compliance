@@ -1,7 +1,7 @@
 from dku_model_data_quality.model_utils import check_differences_between_datasets
 from dku_tools import get_params
 
-# Define here a function that returns the metric.
+
 def process(ds_test, partition_id):
 
     df_test = ds_test.get_dataframe()

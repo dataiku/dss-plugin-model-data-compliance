@@ -37,8 +37,7 @@ class ModelAccessor(object):
         try:
             return self.model_handler.get_test_df()[0][:limit]
         except Exception as e:
-            logger.warning(
-                'Can not retrieve original test set: {}. The plugin will take the whole original dataset.'.format(e))
+            logger.warning('Can not retrieve original test set: {}. The plugin will take the whole original dataset.'.format(e))
             return self.model_handler.get_full_df()[0][:limit]
 
     def get_per_feature(self):
