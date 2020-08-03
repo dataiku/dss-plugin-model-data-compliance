@@ -13,7 +13,7 @@ def get_model_handler(model, version_id=None):
 def _get_model_info_handler(saved_model_version_id):
     infos = saved_model_version_id.split("-")
     if len(infos) != 4 or infos[0] != "S":
-        raise Exception("Invalid saved model id")
+        raise ValueError("Invalid saved model id") 
     pkey = infos[1]
     model_id = infos[2]
     version_id = infos[3]
