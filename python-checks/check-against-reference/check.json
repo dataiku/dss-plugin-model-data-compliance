@@ -41,14 +41,14 @@
             "name": "columns_model",
             "label": "Columns to check",
             "type": "DATASET_COLUMNS",
-            "description": "If empty, all columns used in the model will be checked",
+            "description": "If empty, check all columns used in the model",
             "mandatory": false,
             "visibilityCondition" : "model.input_mode == 'model'"
         },
         {
             "name": "werror",
             "label" : "Raise errors on anomaly",
-            "description" : "Ticking this box will raise an error on anomaly instead of a warning",
+            "description" : "Raise an error on anomaly instead of a warning",
             "type": "BOOLEAN"
         },
         {
