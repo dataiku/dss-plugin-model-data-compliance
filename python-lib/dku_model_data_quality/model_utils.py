@@ -27,7 +27,6 @@ def get_bounds(a, mode='absolute_range'):
 
 def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode='interquantile_range'):
     """
-
     :param df_ref:
     :param df_test:
     :param columns:
@@ -42,7 +41,10 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
         columns = set(df_ref.columns).intersection(set(df_test.columns))
     else:
         columns = set(columns)
-    
+        columns_not_in_df_ref = set(columns) - set(df_ref.columns)
+        if len(columns_not_in_df_ref) > 0:
+            raise ValueError('These chosen columns are not in the reference dataset: {}'.format(' ,'.join(list(columns_not_in_df_ref))))
+
     result = dict()
     n_test = float(df_test.shape[0])
 
