@@ -20,10 +20,10 @@ def process(last_values, ds_test, partition_id):
     for col_name, ratio in numerical_columns_diff.items():
         if ratio > tolerance:
             numerical_columns_anomaly = True
-            non_compliant_numerical_columns.append('{}, {:.2f}'.format(col_name, ratio))
+            non_compliant_numerical_columns.append('{} - {:.2f}'.format(col_name, ratio*100))
 
     if len(non_compliant_numerical_columns) > 0:
-        numerical_columns_message = 'Non-compliant numerical columns: {}'.format(', '.join(non_compliant_numerical_columns))
+        numerical_columns_message = 'Numerical columns: {}% non-compliant values'.format(', '.join(non_compliant_numerical_columns))
     else:
         numerical_columns_message = ''
 
@@ -35,12 +35,12 @@ def process(last_values, ds_test, partition_id):
             non_compliant_categorical_columns.append('{} - {} new categories'.format(col_name, len(new_categories)))
 
     if len(non_compliant_categorical_columns) > 0:
-        categorical_columns_message = 'Non-compliant categorical columns: {}'.format(', '.join(non_compliant_categorical_columns))
+        categorical_columns_message = 'Categorical columns: {}'.format(', '.join(non_compliant_categorical_columns))
     else:
         categorical_columns_message = ''
 
     anomaly = numerical_columns_anomaly or categorical_columns_anomaly
     result = message_type if anomaly else'OK'
-    message = '{} {}'.format(numerical_columns_message, categorical_columns_message)
+    message = '{}. {}'.format(numerical_columns_message, categorical_columns_message)
 
     return result, message

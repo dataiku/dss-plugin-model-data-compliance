@@ -8,7 +8,7 @@ def process(ds_test, partition_id):
     df_ref, columns, range_mode = get_params(config)
     numerical_columns_diff, diff_categorical_columns = check_differences_between_datasets(df_ref, df_test, columns=columns, range_mode=range_mode)
 
-    numerical_columns_result = [('Ratio of invalid samples in {}'.format(k), v) for k, v in numerical_columns_diff.items()]
+    numerical_columns_result = [('Ratio of non-compliant samples in {}'.format(k), v) for k, v in numerical_columns_diff.items()]
     categorical_columns_result = [('New categories in {}'.format(k), v) for k, v in diff_categorical_columns.items()]
 
     result = numerical_columns_result
