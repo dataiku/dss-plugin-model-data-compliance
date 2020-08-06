@@ -5,8 +5,7 @@ from dku_model_accessor import get_model_handler, ModelAccessor
 
 
 def get_params(config):
-    columns = None
-    df_ref = None
+    range_mode = config.get('range_mode')
 
     if config.get('input_mode') == 'dataset':
         df_ref = dataiku.Dataset(config.get("ds_ref")).get_dataframe()
@@ -14,8 +13,7 @@ def get_params(config):
         columns_not_in_df_ref = set(columns) - set(df_ref.columns)
         if len(columns_not_in_df_ref) > 0:
             raise ValueError(
-                'The following chosen columns are not in the reference dataset: {}. Please remove them from the list of columns to check.'.format(
-                    ' ,'.join(list(columns_not_in_df_ref))))
+                'The following chosen columns are not in the reference dataset: {}. Please remove them from the list of columns to check.'.format(' ,'.join(list(columns_not_in_df_ref))))
     else:
         model_ref = config.get('model_ref')
         if model_ref is None:
@@ -33,7 +31,5 @@ def get_params(config):
                 raise ValueError('The following chosen columns are not used in the model: {}. Please remove them from the list of columns to check.'.format(' ,'.join(features_not_in_model)))
         else:
             columns = selected_features
-
-    range_mode = config.get('range_mode')
 
     return df_ref, columns, range_mode
