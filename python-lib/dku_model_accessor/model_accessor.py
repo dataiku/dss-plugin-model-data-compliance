@@ -36,14 +36,22 @@ class ModelAccessor(object):
 
     def get_original_test_df(self, limit=DkuModelAccessorConstants.MAX_NUM_ROW):
         try:
-            return self.model_handler.get_test_df()[0][:limit]
+            full_test_df = self.model_handler.get_test_df()[0]
+            test_df = full_test_df[:limit]
+            logger.info('Loading {}/{} rows of the original test set'.format(len(test_df), len(full_test_df)))
+            return test_df
         except Exception as e:
-            logger.warning(
-                'Can not retrieve original test set: {}. The plugin will take the whole original dataset.'.format(e))
-            return self.model_handler.get_full_df()[0][:limit]
+            logger.warning('Can not retrieve original test set: {}. The plugin will take the whole original dataset.'.format(e))
+            full_test_df = self.model_handler.get_full_df()[0]
+            test_df = full_test_df[:limit]
+            logger.info('Loading {}/{} rows of the whole original test set'.format(len(test_df), len(full_test_df)))
+            return test_df
 
     def get_train_df(self, limit=DkuModelAccessorConstants.MAX_NUM_ROW):
-        return self.model_handler.get_train_df()[0][:limit]
+        full_train_df = self.model_handler.get_train_df()[0]
+        train_df = full_train_df[:limit]
+        logger.info('Loading {}/{} rows of the original train set'.format(len(train_df), len(full_train_df)))
+        return train_df
 
     def get_per_feature(self):
         return self.model_handler.get_per_feature()
@@ -51,8 +59,7 @@ class ModelAccessor(object):
     def get_predictor(self):
         return self.model_handler.get_predictor()
 
-    def get_feature_importance(self,
-                               cumulative_percentage_threshold=DkuModelAccessorConstants.FEAT_IMP_CUMULATIVE_PERCENTAGE_THRESHOLD):
+    def get_feature_importance(self,cumulative_percentage_threshold=DkuModelAccessorConstants.FEAT_IMP_CUMULATIVE_PERCENTAGE_THRESHOLD):
         """
         :param cumulative_percentage_threshold: only return the top n features whose sum of importance reaches this threshold
         :return:

@@ -23,7 +23,7 @@ def process(last_values, ds_test, partition_id):
             non_compliant_numerical_columns.append('{} - {:.2f}'.format(col_name, ratio*100))
 
     if len(non_compliant_numerical_columns) > 0:
-        numerical_columns_message = 'Numerical columns: {}% non-compliant values'.format(', '.join(non_compliant_numerical_columns))
+        numerical_columns_message = 'Numerical columns: {}% non-compliant samples'.format(', '.join(non_compliant_numerical_columns))
     else:
         numerical_columns_message = ''
 

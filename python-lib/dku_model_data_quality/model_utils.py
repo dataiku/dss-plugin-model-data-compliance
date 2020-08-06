@@ -46,14 +46,11 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
 
     features_not_in_dataset = list(set(columns) - set(df_test.columns))
     if len(features_not_in_dataset) > 0:
-        raise ValueError("The following columns are used in the model but don't exist in this dataset: {}".format(
-            ' ,'.join(features_not_in_dataset)))
+        raise ValueError("The following columns are used in the model but don't exist in this dataset: {}".format(' ,'.join(features_not_in_dataset)))
 
-    logger.info('Columns to check:', columns)
+    logger.info('Columns to check: {}'.format(list(columns)))
 
-    result = dict()
     n_test = float(df_test.shape[0])
-
     # we concat the 2 df before checking the type of each column. This avoids situation where col A in ds_ref is object (1a,2,3) but in ds_test is numerical (4,5,6)
     concat_df = pd.concat([df_ref, df_test])
 
