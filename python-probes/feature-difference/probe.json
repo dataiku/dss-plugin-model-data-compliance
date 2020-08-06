@@ -8,6 +8,16 @@
     "handlesManagedFolder": false,
     "params": [
         {
+            "name": "plugin_desc",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum sapien eu mauris ultricies dictum. Praesent egestas eget metus vitae accumsan. Morbi laoreet nunc et rutrum blandit. Donec justo purus, consequat ac velit vel, lobortis feugiat dolor. Integer eget pulvinar nunc. Fusce mollis eleifend massa, maximus convallis mi suscipit vel. Phasellus augue nibh, convallis vel laoreet et, consectetur eget risus. Mauris congue faucibus felis eleifend finibus. Phasellus non nisl lacinia, laoreet magna vitae, facilisis dolor. Vestibulum maximus, felis eget vestibulum semper, nisi nunc ornare risus, ac porta ante erat ut sem. Sed in massa ex..",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "sep1",
+            "label": "Basic",
+            "type": "SEPARATOR"
+        },
+        {
             "name": "input_mode",
             "label": "Input type",
             "type": "SELECT",
@@ -48,24 +58,29 @@
             "visibilityCondition" : "model.input_mode == 'model'"
         },
         {
+            "name": "sep1",
+            "label": "Numerical columns handling",
+            "type": "SEPARATOR"
+        },
+        {
             "name": "range_mode",
-            "label": "Lower/upper bounds mode",
+            "label": "Compliance strategy",
             "type": "SELECT",
             "selectChoices": [
                 { "value": "absolute_range", "label": "Absolute range"},
-                { "value": "interquantile_range", "label": "Interquantile range (IQR)"}
+                { "value": "interquantile_range", "label": "Interquantile range"}
             ],
             "defaultValue": "absolute_range"
         },
         {
             "name": "absolute_range_desc",
-            "description": "For numerical columns, check if values are in the range between the absolute min and max of the original dataset",
+            "description": "For numerical columns, check if values are in the range between the absolute min and max of the reference column",
             "type": "SEPARATOR",
             "visibilityCondition": "model.range_mode == 'absolute_range'"
         },
         {
             "name": "interquantile_range_desc",
-            "description": "For numerical columns, given that IQR is the difference between 75th and 25th percentiles, check if values are in the range of 75th and 25th percentiles ± 1.5 IQR.",
+            "description": "Check if values are within [IQR](https://en.wikipedia.org/wiki/Interquartile_range#Outliers)",
             "type": "SEPARATOR",
             "visibilityCondition": "model.range_mode == 'interquantile_range'"
         }

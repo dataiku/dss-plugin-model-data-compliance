@@ -6,8 +6,18 @@
     },
     "params": [
         {
+            "name": "plugin_desc",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum sapien eu mauris ultricies dictum. Praesent egestas eget metus vitae accumsan. Morbi laoreet nunc et rutrum blandit. Donec justo purus, consequat ac velit vel, lobortis feugiat dolor. Integer eget pulvinar nunc. Fusce mollis eleifend massa, maximus convallis mi suscipit vel.",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "sep1",
+            "label": "Basic",
+            "type": "SEPARATOR"
+        },
+        {
             "name": "input_mode",
-            "label": "Input type",
+            "label": "Reference type",
             "type": "SELECT",
             "selectChoices": [
                 { "value": "dataset", "label": "Dataset"},
@@ -33,7 +43,7 @@
             "name": "columns_dataset",
             "label": "Columns to check",
             "type": "DATASET_COLUMNS",
-            "description": "If empty, all columns will be checked",
+            "description": "If empty, check all columns in this dataset",
             "mandatory": false,
             "visibilityCondition" : "model.input_mode == 'dataset'"
         },
@@ -46,21 +56,30 @@
             "visibilityCondition" : "model.input_mode == 'model'"
         },
         {
-            "name": "werror",
-            "label" : "Raise errors on anomaly",
-            "description" : "Raise an error on anomaly instead of a warning",
-            "type": "BOOLEAN"
+            "name": "message_type",
+            "label": "Message type",
+            "type": "SELECT",
+            "selectChoices": [
+                { "value": "error_message", "label": "Error"},
+                { "value": "warning_message", "label": "Warning"}
+            ],
+            "defaultValue": "error_message"
+        },
+        {
+            "name": "sep2",
+            "label": "Numerical columns handling",
+            "type": "SEPARATOR"
         },
         {
             "name": "tolerance",
-            "label" : "Tolerance",
-            "description": "Ratio of outlier data allowed compared to reference",
+            "label" : "Tolerance rate",
+            "description": "Ratio of non-compliant data allowed in this dataset",
             "type": "DOUBLE",
             "defaultValue": 0.01
         },
         {
             "name": "range_mode",
-            "label": "Lower/upper bounds mode",
+            "label": "Compliance strategy",
             "type": "SELECT",
             "selectChoices": [
                 { "value": "absolute_range", "label": "Absolute range"},
@@ -70,13 +89,13 @@
         },
         {
             "name": "absolute_range_desc",
-            "description": "For numerical columns, check if values are in the range between the absolute min and max of the original dataset",
+            "description": "Check if values are in the range between the absolute min and max of the reference column",
             "type": "SEPARATOR",
             "visibilityCondition": "model.range_mode == 'absolute_range'"
         },
         {
             "name": "interquantile_range_desc",
-            "description": "For numerical columns, given that IQR is the difference between 75th and 25th percentiles, check if values are in the range of 75th and 25th percentiles ± 1.5 IQR.",
+            "description": "Check if values are within [IQR](https://en.wikipedia.org/wiki/Interquartile_range#Outliers)",
             "type": "SEPARATOR",
             "visibilityCondition": "model.range_mode == 'interquantile_range'"
         }

@@ -42,6 +42,9 @@ class ModelAccessor(object):
                 'Can not retrieve original test set: {}. The plugin will take the whole original dataset.'.format(e))
             return self.model_handler.get_full_df()[0][:limit]
 
+    def get_train_df(self, limit=DkuModelAccessorConstants.MAX_NUM_ROW):
+        return self.model_handler.get_train_df()[0][:limit]
+
     def get_per_feature(self):
         return self.model_handler.get_per_feature()
 
