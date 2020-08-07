@@ -1,13 +1,13 @@
 {
-    "id": "model-data-quality",
+    "id": "model-data-compliance",
     "version": "1.0.0",
     "meta": {
-        "label": "Model Data Quality",
-        "description": "Automatically check if new incoming data conforms the original training data",
-        "author": "Dataiku (Alexandre Abraham & Du Phan)",
+        "label": "Model Data Compliance",
+        "description": "Automatically check if new incoming data conforms the reference data",
+        "author": "Dataiku",
         "icon": "icon-shield",
         "tags": ["Machine Learning", "Data Quality"],
-        "url": "https://www.dataiku.com/product/plugins/model-data-quality/",
+        "url": "https://www.dataiku.com/product/plugins/model-data-compliance/",
         "licenseInfo": "Apache Software License"
     }
 }
