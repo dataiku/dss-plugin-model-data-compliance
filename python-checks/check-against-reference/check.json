@@ -7,12 +7,12 @@
     "params": [
         {
             "name": "plugin_desc",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum sapien eu mauris ultricies dictum. Praesent egestas eget metus vitae accumsan. Morbi laoreet nunc et rutrum blandit. Donec justo purus, consequat ac velit vel, lobortis feugiat dolor. Integer eget pulvinar nunc. Fusce mollis eleifend massa, maximus convallis mi suscipit vel.",
+            "description": "Given a reference dataset or a saved model, check for non-compliant values on new data.\n* For numerical columns, check if  the ratio of samples not in the reference bounds is under the tolerance rate.\n* For categorical columns, check if there are new unseen categories.\n",
             "type": "SEPARATOR"
         },
         {
             "name": "sep1",
-            "label": "Basic",
+            "label": "General settings",
             "type": "SEPARATOR"
         },
         {

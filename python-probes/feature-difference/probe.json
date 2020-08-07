@@ -9,12 +9,12 @@
     "params": [
         {
             "name": "plugin_desc",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum sapien eu mauris ultricies dictum. Praesent egestas eget metus vitae accumsan. Morbi laoreet nunc et rutrum blandit. Donec justo purus, consequat ac velit vel, lobortis feugiat dolor. Integer eget pulvinar nunc. Fusce mollis eleifend massa, maximus convallis mi suscipit vel. Phasellus augue nibh, convallis vel laoreet et, consectetur eget risus. Mauris congue faucibus felis eleifend finibus. Phasellus non nisl lacinia, laoreet magna vitae, facilisis dolor. Vestibulum maximus, felis eget vestibulum semper, nisi nunc ornare risus, ac porta ante erat ut sem. Sed in massa ex..",
+            "description": "Given a reference dataset or a saved model, compute compliance metrics on new data.\n* For numerical columns, the ratio of samples not in the reference bounds is computed.\n* For categorical columns, the list of new unseen categories is computed.\n",
             "type": "SEPARATOR"
         },
         {
             "name": "sep1",
-            "label": "Basic",
+            "label": "General settings",
             "type": "SEPARATOR"
         },
         {
