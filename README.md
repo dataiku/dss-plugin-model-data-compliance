@@ -3,8 +3,8 @@
 For proper monitoring of deployed ML models, a considerate data scientist/ML engineer want to check new data looks like training data.
 
 ## Scope of the plugin
-This plugin offers a set of different DSS components to monitor input data drift (of a model):
-* Custom metric:  compute compliance metrics given a reference dataset or a saved model.
+This plugin offers a set of different DSS components to monitor input data:
+* Custom metric: compute compliance metrics given a reference dataset or a saved model.
 * Custom check: validate new data given a reference dataset or a saved model.
 
 
