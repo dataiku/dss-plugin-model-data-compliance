@@ -1,4 +1,4 @@
-# Model data compliance
+# Model Data Compliance
 
 For proper monitoring of deployed ML models, a considerate data scientist/ML engineer want to check new data looks like training data.
 
