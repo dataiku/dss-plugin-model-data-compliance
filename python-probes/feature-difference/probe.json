@@ -1,7 +1,7 @@
 {
     "meta" : {
-        "label": "Feature metrics against reference",
-        "description": "",
+        "label": "Compare dataset with a reference",
+        "description": "Compares columns values between a reference and the current dataset",
         "icon": "icon-check"
     },
     "handlesDataset": true,

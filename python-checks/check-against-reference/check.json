@@ -1,7 +1,7 @@
 {
     "meta" : {
-        "label": "Check dataset against reference",
-        "description": "Compares feature descriptors between a reference and the current dataset",
+        "label": "Check dataset against a reference",
+        "description": "Check difference between a reference and the current dataset",
         "icon": "icon-check"
     },
     "params": [
