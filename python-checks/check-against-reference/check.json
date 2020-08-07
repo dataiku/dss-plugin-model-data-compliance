@@ -95,7 +95,7 @@
         },
         {
             "name": "interquantile_range_desc",
-            "description": "Check if values are within [IQR](https://en.wikipedia.org/wiki/Interquartile_range#Outliers)",
+            "description": "Check if values are within [IQR](https://www.dataiku.com/product/plugins/model-data-compliance/)",
             "type": "SEPARATOR",
             "visibilityCondition": "model.range_mode == 'interquantile_range'"
         }
