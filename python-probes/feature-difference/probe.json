@@ -1,0 +1,88 @@
+{
+    "meta" : {
+        "label": "Feature metrics against reference",
+        "description": "",
+        "icon": "icon-check"
+    },
+    "handlesDataset": true,
+    "handlesManagedFolder": false,
+    "params": [
+        {
+            "name": "plugin_desc",
+            "description": "Given a reference dataset or a saved model, compute compliance metrics on new data.\n* For numerical columns, the ratio of samples not in the reference bounds is computed.\n* For categorical columns, the list of new unseen categories is computed.\n",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "sep1",
+            "label": "General settings",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "input_mode",
+            "label": "Input type",
+            "type": "SELECT",
+            "selectChoices": [
+                { "value": "dataset", "label": "Dataset"},
+                { "value": "model", "label": "Saved model"}
+            ],
+            "defaultValue": "model"
+        },
+        {
+            "name": "ds_ref",
+            "label": "Reference dataset",
+            "type": "DATASET",
+            "description": "Dataset on which feature checks are computed",
+            "visibilityCondition": "model.input_mode == 'dataset'"
+        },
+        {
+            "name": "model_ref",
+            "label": "Reference model",
+            "type": "SAVED_MODEL",
+            "description": "Model on which feature checks are computed",
+            "visibilityCondition": "model.input_mode == 'model'"
+        },
+        {
+            "name": "columns_dataset",
+            "label": "Columns to check",
+            "type": "DATASET_COLUMNS",
+            "description": "If empty, all columns will be checked",
+            "mandatory": false,
+            "visibilityCondition" : "model.input_mode == 'dataset'"
+        },
+        {
+            "name": "columns_model",
+            "label": "Columns to check",
+            "type": "DATASET_COLUMNS",
+            "description": "If empty, all columns used in the model will be checked",
+            "mandatory": false,
+            "visibilityCondition" : "model.input_mode == 'model'"
+        },
+        {
+            "name": "sep1",
+            "label": "Numerical columns handling",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "range_mode",
+            "label": "Compliance strategy",
+            "type": "SELECT",
+            "selectChoices": [
+                { "value": "absolute_range", "label": "Absolute range"},
+                { "value": "interquantile_range", "label": "Interquantile range"}
+            ],
+            "defaultValue": "absolute_range"
+        },
+        {
+            "name": "absolute_range_desc",
+            "description": "For numerical columns, check if values are in the range between the absolute min and max of the reference column",
+            "type": "SEPARATOR",
+            "visibilityCondition": "model.range_mode == 'absolute_range'"
+        },
+        {
+            "name": "interquantile_range_desc",
+            "description": "Check if values are within [IQR](https://en.wikipedia.org/wiki/Interquartile_range#Outliers)",
+            "type": "SEPARATOR",
+            "visibilityCondition": "model.range_mode == 'interquantile_range'"
+        }
+    ]
+}

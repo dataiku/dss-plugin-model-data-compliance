@@ -1,0 +1,103 @@
+{
+    "meta" : {
+        "label": "Check dataset against reference",
+        "description": "Compares feature descriptors between a reference and the current dataset",
+        "icon": "icon-check"
+    },
+    "params": [
+        {
+            "name": "plugin_desc",
+            "description": "Given a reference dataset or a saved model, check for non-compliant values on new data.\n* For numerical columns, check if  the ratio of samples not in the reference bounds is under the tolerance rate.\n* For categorical columns, check if there are new unseen categories.\n",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "sep1",
+            "label": "General settings",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "input_mode",
+            "label": "Reference type",
+            "type": "SELECT",
+            "selectChoices": [
+                { "value": "dataset", "label": "Dataset"},
+                { "value": "model", "label": "Saved model"}
+            ],
+            "defaultValue": "model"
+        },
+        {
+            "name": "ds_ref",
+            "label": "Reference dataset",
+            "type": "DATASET",
+            "description": "Dataset on which feature checks are computed",
+            "visibilityCondition": "model.input_mode == 'dataset'"
+        },
+        {
+            "name": "model_ref",
+            "label": "Reference model",
+            "type": "SAVED_MODEL",
+            "description": "Model on which feature checks are computed",
+            "visibilityCondition": "model.input_mode == 'model'"
+        },
+        {
+            "name": "columns_dataset",
+            "label": "Columns to check",
+            "type": "DATASET_COLUMNS",
+            "description": "If empty, check all columns in this dataset",
+            "mandatory": false,
+            "visibilityCondition" : "model.input_mode == 'dataset'"
+        },
+        {
+            "name": "columns_model",
+            "label": "Columns to check",
+            "type": "DATASET_COLUMNS",
+            "description": "If empty, check all columns used in the model",
+            "mandatory": false,
+            "visibilityCondition" : "model.input_mode == 'model'"
+        },
+        {
+            "name": "message_type",
+            "label": "Message type",
+            "type": "SELECT",
+            "selectChoices": [
+                { "value": "error_message", "label": "Error"},
+                { "value": "warning_message", "label": "Warning"}
+            ],
+            "defaultValue": "error_message"
+        },
+        {
+            "name": "sep2",
+            "label": "Numerical columns handling",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "tolerance",
+            "label" : "Tolerance rate",
+            "description": "Ratio of non-compliant data allowed in this dataset",
+            "type": "DOUBLE",
+            "defaultValue": 0.01
+        },
+        {
+            "name": "range_mode",
+            "label": "Compliance strategy",
+            "type": "SELECT",
+            "selectChoices": [
+                { "value": "absolute_range", "label": "Absolute range"},
+                { "value": "interquantile_range", "label": "Interquantile range"}
+            ],
+            "defaultValue": "absolute_range"
+        },
+        {
+            "name": "absolute_range_desc",
+            "description": "Check if values are in the range between the absolute min and max of the reference column",
+            "type": "SEPARATOR",
+            "visibilityCondition": "model.range_mode == 'absolute_range'"
+        },
+        {
+            "name": "interquantile_range_desc",
+            "description": "Check if values are within [IQR](https://en.wikipedia.org/wiki/Interquartile_range#Outliers)",
+            "type": "SEPARATOR",
+            "visibilityCondition": "model.range_mode == 'interquantile_range'"
+        }
+    ]
+}
