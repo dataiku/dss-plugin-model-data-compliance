@@ -8,7 +8,7 @@ def get_params(config):
     range_mode = config.get('range_mode')
 
     if config.get('input_mode') == 'dataset':
-        df_ref = dataiku.Dataset(config.get("ds_ref")).get_dataframe()
+        df_ref = dataiku.Dataset(config.get("ds_ref")).get_dataframe(bool_as_str=True)
         columns = [col for col in config.get("columns_dataset") if col != '']
         columns_not_in_df_ref = set(columns) - set(df_ref.columns)
         if len(columns_not_in_df_ref) > 0:

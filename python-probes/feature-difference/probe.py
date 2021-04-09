@@ -4,7 +4,7 @@ from dku_tools import get_params
 
 def process(ds_test, partition_id):
     ds_test.add_read_partitions(partition_id)
-    df_test = ds_test.get_dataframe()
+    df_test = ds_test.get_dataframe(bool_as_str=True)
     df_ref, columns, range_mode = get_params(config)
     numerical_columns_diff, diff_categorical_columns = check_differences_between_datasets(df_ref, df_test, columns=columns, range_mode=range_mode)
 

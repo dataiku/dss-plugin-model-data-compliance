@@ -5,7 +5,7 @@ from dku_tools import get_params
 
 def process(last_values, ds_test, partition_id):
     ds_test.add_read_partitions(partition_id)
-    df_test = ds_test.get_dataframe()
+    df_test = ds_test.get_dataframe(bool_as_str=True)
     message_type = config.get('message_type', 'ERROR')
     tolerance = config.get("tolerance", 0)
 

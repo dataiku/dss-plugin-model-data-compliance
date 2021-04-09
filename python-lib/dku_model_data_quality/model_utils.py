@@ -71,8 +71,9 @@ def check_differences_between_datasets(df_ref, df_test, columns=None, range_mode
             continue
         ref_categories = set(df_ref[col_name].unique())
         new_categories = set(df_test[col_name].unique())
-        catogories_diff = list(new_categories - ref_categories)
+        catogories_diff = [str(category) for category in (new_categories - ref_categories)]
         logger.info('Checking column {}. Reference categories: {}'.format(col_name, ref_categories))
+        print('))))))))))))) ', catogories_diff)
         categorical_columns_diff[col_name] = catogories_diff
 
     return numerical_columns_diff, categorical_columns_diff
