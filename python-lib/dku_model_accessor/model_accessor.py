@@ -48,10 +48,17 @@ class ModelAccessor(object):
             return test_df
 
     def get_train_df(self, limit=DkuModelAccessorConstants.MAX_NUM_ROW):
-        full_train_df = self.model_handler.get_train_df()[0]
-        train_df = full_train_df[:limit]
-        logger.info('Loading {}/{} rows of the original train set'.format(len(train_df), len(full_train_df)))
-        return train_df
+        try:
+            full_train_df = self.model_handler.get_train_df()[0]
+            train_df = full_train_df[:limit]
+            logger.info('Loading {}/{} rows of the original train set'.format(len(train_df), len(full_train_df)))
+            return train_df
+        except Exception as e:
+            logger.warning('Can not retrieve original train set: {}. The plugin will take the whole original dataset.'.format(e))
+            full_df = self.model_handler.get_full_df()[0]
+            train_df = full_df[:limit]
+            logger.info('Loading {}/{} rows of the whole original dataset'.format(len(train_df), len(full_df)))
+            return train_df
 
     def get_per_feature(self):
         return self.model_handler.get_per_feature()
