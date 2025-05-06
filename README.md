@@ -1,5 +1,7 @@
 # Model Data Compliance
 
+⚠️ Starting with DSS version 14 this plugin is considered \"deprecated\".
+
 For proper monitoring of deployed ML models, a considerate data scientist/ML engineer want to check new data looks like training data.
 
 ## Scope of the plugin

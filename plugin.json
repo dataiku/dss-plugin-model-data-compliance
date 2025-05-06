@@ -3,7 +3,7 @@
     "version": "1.0.1",
     "meta": {
         "label": "Model Data Compliance",
-        "description": "Automatically check if new incoming data conforms the reference data",
+        "description": "Automatically check if new incoming data conforms the reference data. ⚠️ Starting with DSS version 14 this plugin is considered \"deprecated\".",
         "author": "Dataiku",
         "icon": "icon-shield",
         "tags": ["Machine Learning", "Data Quality"],
